@@ -27,7 +27,7 @@
 * **HTML5 / BootStrap 3.x**
 * **CSS**
 * **Apache Tomcat 9** 
-* **Maven
+* **Maven**
 * **H2**
 
 ## Instalação
