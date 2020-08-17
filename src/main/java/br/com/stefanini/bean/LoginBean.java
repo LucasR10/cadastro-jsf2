@@ -30,7 +30,8 @@ public class LoginBean implements Serializable {
     private String login;
     private String senha;
     List<Usuario> usuarios = new ArrayList<Usuario>() ;
-    
+    private Boolean criado =false;
+    ;
     private UsuarioRepository usuarioRepository = new UsuarioRepository() ;
 
     public LoginBean() {
@@ -41,17 +42,19 @@ public class LoginBean implements Serializable {
         this.login = "";
         this.senha = "";
        
-        if(usuarioLogado == null) {
-        	  usuarios = usuariosMock();
-              usuarioLogado = usuariosMock().get(0);
-            ///usuarios  = usuarioRepository.listar();
+        if( !criado ) {
+        	 usuarioRepository.salvar( usuariosMock().get(0) );
+        	 usuarioRepository.salvar( usuariosMock().get(1) );
+        	 criado = true;
+        } 
+        if( usuarioLogado != null ) {
+            usuarios  = usuarioRepository.listar();
         }
     }
 
 
     public String logIn() {
-       // usuarioLogado = usuarioRepository.buscar(login, senha);
-    	  usuarioLogado = usuariosMock().get(0);
+         usuarioLogado = usuarioRepository.buscar(login, senha);
         if (usuarioLogado == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou Senha Inválidos", "Login Inválido"));
             return null;

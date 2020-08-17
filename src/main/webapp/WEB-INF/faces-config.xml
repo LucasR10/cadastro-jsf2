@@ -10,8 +10,8 @@
 		</locale-config>
 	</application>
  
-<!-- 	<lifecycle>
-		<phase-listener>br.com.stefanini.filter.LoginPhaseListener</phase-listener>
+ 	<lifecycle>
+		<phase-listener>br.com.stefanini.phaseListener.LoginPhaseListener</phase-listener>
 	</lifecycle>
- -->
+
 </faces-config>
