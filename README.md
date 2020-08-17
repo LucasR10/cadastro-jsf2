@@ -1,6 +1,6 @@
 # Cadastro Usuário
    Cadastro de Funcionario está publicado na [DigitalOcean](https://www.digitalocean.com/) mais poderia ser publicado **AWS AC2**! 
-   * Link com login http://198.199.91.245:8080/cadastro/login.xhtml
+   * Link com login http://198.199.91.245:8080/cadastro/login.xhtml  - usuário: admin, senha: 12345
    * Link sem http://198.199.91.245:8080/cadastro2/
 
 ## A demanda 
