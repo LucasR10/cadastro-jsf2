@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class LoginUtil {
 
-	public String MD5(String senha) {
+	public static String MD5(String senha) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] array = md.digest(senha.getBytes());

@@ -10,11 +10,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.Transient;
 import javax.servlet.http.HttpSession;
 
 import br.com.stefanini.model.Usuario;
 import br.com.stefanini.phaseListener.LoginPhaseListener;
 import br.com.stefanini.repository.UsuarioRepository;
+import br.com.stefanini.util.LoginUtil;
 
 @ManagedBean 
 @SessionScoped
@@ -22,7 +24,7 @@ public class LoginBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private static final String ADMIN = "admin";
-	private static final String ADMIN_PASS = "122334444";
+	private static final String ADMIN_PASS = "12345";
 	
 	private static final String NEYMARJR = "neymarjr";
 	private static final String NY_PASS = "12345";
@@ -49,9 +51,6 @@ public class LoginBean implements Serializable {
         	 usuarioRepository.salvar( usuariosMock().get(0) );
         	 usuarioRepository.salvar( usuariosMock().get(1) );
         } 
-        if( usuarioLogado != null ) {
-            usuarios  = usuarioRepository.listar();
-        }
     }
 
 
@@ -78,8 +77,8 @@ public class LoginBean implements Serializable {
     
 	private List<Usuario> usuariosMock() {
 		List<Usuario> us = new ArrayList<Usuario>();
-	    us.add( new Usuario("Paula Silva", ADMIN, ADMIN_PASS, Boolean.TRUE));
-	    us.add( new Usuario("Neymar JR", NEYMARJR, NY_PASS, Boolean.FALSE) );
+	    us.add( new Usuario("Paula da Silva", ADMIN, ADMIN_PASS, Boolean.TRUE));
+	    us.add( new Usuario("Neymar Costa", NEYMARJR, NY_PASS, Boolean.FALSE) );
 	    return us;
 	}
 
@@ -91,8 +90,9 @@ public class LoginBean implements Serializable {
 		this.login = login;
 	}
 
+	@Transient
 	public String getSenha() {
-		return senha;
+		return LoginUtil.MD5(senha);
 	}
 
 	public void setSenha(String senha) {
@@ -105,7 +105,10 @@ public class LoginBean implements Serializable {
     
    
     public List<Usuario> getUsuarios() {
-		return usuarios;
+		return usuarioRepository.listar();
 	}
 
+	public String getSenhaMD5() {
+		return senha;
+	} 
 }

@@ -9,9 +9,11 @@
 			<default-locale>pt_BR</default-locale>
 		</locale-config>
 	</application>
- 
- 	<lifecycle>
+	
+	<lifecycle>
 		<phase-listener>br.com.stefanini.phaseListener.LoginPhaseListener</phase-listener>
 	</lifecycle>
+ 
+
 
 </faces-config>
