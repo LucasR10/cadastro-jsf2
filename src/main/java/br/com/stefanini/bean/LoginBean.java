@@ -10,13 +10,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.Transient;
 import javax.servlet.http.HttpSession;
 
 import br.com.stefanini.model.Usuario;
 import br.com.stefanini.phaseListener.LoginPhaseListener;
 import br.com.stefanini.repository.UsuarioRepository;
-import br.com.stefanini.util.LoginUtil;
+import br.com.stefanini.util.AppUtil;
+
 
 @ManagedBean 
 @SessionScoped
@@ -55,7 +55,7 @@ public class LoginBean implements Serializable {
 
 
     public String logIn() {
-         usuarioLogado = usuarioRepository.buscar(login, senha);
+         usuarioLogado = usuarioRepository.buscar(login, md5(senha));
         if (usuarioLogado == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou Senha Inválidos", "Login Inválido"));
             return null;
@@ -77,8 +77,8 @@ public class LoginBean implements Serializable {
     
 	private List<Usuario> usuariosMock() {
 		List<Usuario> us = new ArrayList<Usuario>();
-	    us.add( new Usuario("Paula da Silva", ADMIN, ADMIN_PASS, Boolean.TRUE));
-	    us.add( new Usuario("Neymar Costa", NEYMARJR, NY_PASS, Boolean.FALSE) );
+	    us.add( new Usuario("Paula da Silva", ADMIN, md5(ADMIN_PASS), Boolean.TRUE));
+	    us.add( new Usuario("Neymar Costa", NEYMARJR, md5(NY_PASS), Boolean.FALSE) );
 	    return us;
 	}
 
@@ -90,9 +90,9 @@ public class LoginBean implements Serializable {
 		this.login = login;
 	}
 
-	@Transient
+	
 	public String getSenha() {
-		return LoginUtil.MD5(senha);
+		return senha;
 	}
 
 	public void setSenha(String senha) {
@@ -107,8 +107,10 @@ public class LoginBean implements Serializable {
     public List<Usuario> getUsuarios() {
 		return usuarioRepository.listar();
 	}
-
-	public String getSenhaMD5() {
-		return senha;
-	} 
+    
+    public String md5(final String md5) {
+    	if(md5 == null ) return null;
+    	return AppUtil.MD5(md5);
+    }
+    	
 }

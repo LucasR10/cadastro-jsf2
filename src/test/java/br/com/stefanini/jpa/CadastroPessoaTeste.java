@@ -16,12 +16,12 @@ import org.junit.Test;
 
 import br.com.stefanini.costante.Genero;
 import br.com.stefanini.model.Pessoa;
-import br.com.stefanini.phaseListener.JPAFilter;
+import br.com.stefanini.util.JPAUtil;
 
 public class CadastroPessoaTeste {
 
 	
-	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(JPAFilter.CADASTRO_PU);
+	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory( JPAUtil.CADASTRO_PU );
 	private EntityManager entityManager;
 	Pessoa pessoa =  new Pessoa(null,"Lucas", Genero.F, "email", new Date(), Calendar.getInstance(), Calendar.getInstance(), "naturalidade", "nacionalidade", "cpf");
 	
