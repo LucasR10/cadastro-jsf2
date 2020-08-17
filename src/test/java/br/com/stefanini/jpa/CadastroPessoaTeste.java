@@ -15,8 +15,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.stefanini.costante.Genero;
-import br.com.stefanini.filter.JPAFilter;
 import br.com.stefanini.model.Pessoa;
+import br.com.stefanini.phaseListener.JPAFilter;
 
 public class CadastroPessoaTeste {
 

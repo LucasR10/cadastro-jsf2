@@ -1,6 +1,7 @@
-package br.com.stefanini.controller;
+package br.com.stefanini.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,8 +11,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import br.com.stefanini.filter.LoginPhaseListener;
 import br.com.stefanini.model.Usuario;
+import br.com.stefanini.phaseListener.LoginPhaseListener;
 import br.com.stefanini.repository.UsuarioRepository;
 
 @ManagedBean 
@@ -28,7 +29,7 @@ public class LoginBean implements Serializable {
 	private Usuario usuarioLogado;
     private String login;
     private String senha;
-    List<Usuario> usuarios ;
+    List<Usuario> usuarios = new ArrayList<Usuario>() ;
     
     private UsuarioRepository usuarioRepository = new UsuarioRepository() ;
 
@@ -40,15 +41,17 @@ public class LoginBean implements Serializable {
         this.login = "";
         this.senha = "";
        
-        if( false ) {
-	      usuarioRepository.salvar(new Usuario("Neymar JR", NEYMARJR, NY_PASS, Boolean.FALSE));
-	      usuarioRepository.salvar(new Usuario("Paula Silva", ADMIN, ADMIN_PASS, Boolean.TRUE) );
+        if(usuarioLogado == null) {
+        	  usuarios = usuariosMock();
+              usuarioLogado = usuariosMock().get(0);
+            ///usuarios  = usuarioRepository.listar();
         }
-           if(usuarioLogado != null) usuarios  = usuarioRepository.listar();
     }
 
+
     public String logIn() {
-        usuarioLogado = usuarioRepository.buscar(login, senha);
+       // usuarioLogado = usuarioRepository.buscar(login, senha);
+    	  usuarioLogado = usuariosMock().get(0);
         if (usuarioLogado == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou Senha Inválidos", "Login Inválido"));
             return null;
@@ -67,6 +70,13 @@ public class LoginBean implements Serializable {
         session.invalidate();
         return "/login?faces-redirect=true";
     }
+    
+	private List<Usuario> usuariosMock() {
+		List<Usuario> us = new ArrayList<Usuario>();
+	    us.add( new Usuario("Paula Silva", ADMIN, ADMIN_PASS, Boolean.TRUE));
+	    us.add( new Usuario("Neymar JR", NEYMARJR, NY_PASS, Boolean.FALSE) );
+	    return us;
+	}
 
 	public String getLogin() {
 		return login;

@@ -1,4 +1,4 @@
-package br.com.stefanini.controller;
+package br.com.stefanini.bean;
 
 import java.io.Serializable;
 import java.util.List;
