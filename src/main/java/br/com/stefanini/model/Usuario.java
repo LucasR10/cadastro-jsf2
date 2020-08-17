@@ -12,13 +12,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
-@NamedQueries( @NamedQuery(name = Usuario.LOGIN, query = "SELECT u FROM Usuario u WHERE u.login= ?1 AND u.senha = ?2"))
+@NamedQueries({ 
+	@NamedQuery(name = Usuario.LOGIN, query = "SELECT u FROM Usuario u WHERE u.login= ?1 AND u.senha = ?2"),
+	@NamedQuery(name = Usuario.TODOS, query = "SELECT u FROM Usuario u ")
+})
 @Entity @Table(name = "TB_USUARIO")
 public class Usuario implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
     public static final String LOGIN ="buscar.login";
-	
+    public static final String TODOS ="buscar.todos";
+    
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
     @Column(name = "NOME", nullable = false)

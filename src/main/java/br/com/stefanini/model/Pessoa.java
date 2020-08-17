@@ -36,7 +36,7 @@ public class Pessoa implements Serializable {
 	@Column(name = "ID", nullable = false)
 	private Long id;
 
-	@Column(name = "NOME", nullable = false, length = 200)
+	@Column(name = "NOME", nullable = false, length = 150)
 	private String nome;
 
 	@Column(name = "SEXO", length = 5)
@@ -84,6 +84,10 @@ public class Pessoa implements Serializable {
 		this.naturalidade = naturalidade;
 		this.nacionalidade = nacionalidade;
 		this.cpf = cpf;
+	}
+	
+	public Pessoa(Long id) {
+		this.id = id;
 	}
 	
 	public Pessoa( String nome, Genero sexo, String email, Date dataNascimento, Calendar dataCadastro,

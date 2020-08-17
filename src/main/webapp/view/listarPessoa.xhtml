@@ -6,14 +6,92 @@
 	template="/WEB-INF/templates/layout.xhtml">
 	
 	<ui:define name="content">
-		<h1 class="aw-page-title">Cadastro de Pessoas</h1>
-		
-			
+		<h1 class="aw-page-title">Usuários</h1>
 	<h:form id="formulario">
-	          <br/>
              <p:messages closable="true" />
-             <br/>
-			<p:dataTable var="pessoa" value="#{pessoaBean.pessoas}">
+			<p:panel header="Cadastro de Pessoas" styleClass="aw-painel" id="painelPessoa" rendered="#{pessoaBean.pessoa.id != null}"
+				style="font-size: 15px;">
+				<h:inputHidden value="#{pessoaBean.pessoa.id}" />
+				<h:panelGrid columns="2" cellpadding="5">
+
+					<p:outputLabel value="Nome:" for="nome" styleClass="aw-bold" />
+					<h:panelGroup>
+						<p:inputText id="nome" value="#{pessoaBean.pessoa.nome}"
+							required="true"
+							requiredMessage="Favor informar seu nome completo."
+							maxlength="100" placeholder="Jose da Silva" />
+					</h:panelGroup>
+
+					<p:outputLabel value="Data de Nascimento :" for="dataNascimento"
+						styleClass="aw-bold" />
+					<h:panelGroup>
+						<p:calendar id="dataNascimento"
+							value="#{pessoaBean.pessoa.dataNascimento}" pattern="dd/MM/yyyy"
+							mask="true" required="true"
+							requiredMessage="Favor informar a Data de Nascimento."
+							placeholder="10/11/1985" />
+					</h:panelGroup>
+
+					<p:outputLabel value="CPF:" for="cpf" styleClass="aw-bold" />
+					<h:panelGroup>
+						<p:inputMask id="cpf" value="#{pessoaBean.pessoa.cpf}"
+							mask="999.999.999-99" required="true"
+							requiredMessage="Favor informar o CPF." maxlength="12"
+							placeholder="054.533.048-08">
+							<f:validator validatorId="cpfValidator" />
+						</p:inputMask>
+					</h:panelGroup>
+
+					<p:outputLabel value="E-mail:" for="email" styleClass="aw-bold" />
+					<h:panelGroup>
+						<p:inputText id="email" value="#{pessoaBean.pessoa.email}"
+							maxlength="50" placeholder="josesilva@gmail.com">
+							<f:validator validatorId="emailValidator" />
+						</p:inputText>
+					</h:panelGroup>
+
+					<p:outputLabel value="Sexo" for="sexo" styleClass="aw-bold" />
+					<h:panelGroup styleClass="col-mod-4">
+						<p:selectOneMenu id="sexo" value="#{pessoaBean.generoSelecionado}">
+							<f:selectItem itemLabel="Selecione..." />
+							<f:selectItems var="sexo" value="#{pessoaBean.generos}"
+								itemLabel="#{sexo.texto}" itemValue="#{sexo}" />
+						</p:selectOneMenu>
+					</h:panelGroup>
+
+					<p:outputLabel value="Naturalidade " for="naturalidade"
+						styleClass="aw-bold" />
+					<h:panelGroup styleClass="col-mod-4">
+						<p:selectOneMenu id="naturalidade"
+							value="#{pessoaBean.estadoSelecionado.sigla}">
+							<f:selectItem itemLabel="Selecione..." />
+							<f:selectItems var="es" value="#{pessoaBean.estados}"
+								itemLabel="#{es.nome}" itemValue="#{es.sigla}" />
+						</p:selectOneMenu>
+					</h:panelGroup>
+
+					<p:outputLabel value="Nacionalidade :" for="nacionalidade"
+						styleClass="aw-bold" />
+					<h:panelGroup>
+						<p:inputText id="nacionalidade"
+							value="#{pessoaBean.pessoa.nacionalidade}"
+							placeholder="Brasil, US, Bolivia" />
+					</h:panelGroup>
+
+				</h:panelGrid>
+				<h:panelGrid columns="2" cellpadding="5" style="margin-top:10px;">
+					    
+					    <p:commandButton value="Atualizar" action="#{pessoaBean.salvar()}"
+						icon="fa fa-save" update="@form" ajax="false"
+						styleClass="btn btn-primary aw-bold" style="margin-right: 19px;" />
+						
+						<p:commandButton value="Fechar" actionListener="#{pessoaBean.limpar()}"
+						icon="fa fa-save" update="@form" 
+						styleClass="btn btn-primary aw-bold" style="margin-right: 19px;" />
+				</h:panelGrid>
+			</p:panel>
+
+			<p:dataTable var="pessoa" value="#{pessoaBean.pessoas}" style="margin-top: 10px;" emptyMessage="Não a usuário.">
 				<p:column headerText="Nome">
 					<h:outputText value="#{pessoa.nome}" />
 				</p:column>
@@ -45,14 +123,19 @@
 				</p:column>
 				
 				<p:column headerText="Ação" width="80">
-					<p:commandLink action="#{pessoaBean.atualizar(pessoa)}" title="Editar Usuário" style="margin-left: 7px; margin-right: 7px;">
-					     <i class="fa fa-edit"></i>
-					</p:commandLink>
+					<p:commandButton  actionListener="#{pessoaBean.editar(pessoa)}"  
+					                  title="Editar Usuário"  
+					                  update="@form:formulario" 
+					                  ajax="true" 
+					                  icon="fa fa-edit"  
+					                  immediate="true"
+					                   />
 					
-					<p:commandLink    actionListener="#{pessoaBean.excluir(pessoa)}"  update="@form" title="Excluir Usuário" onclick="if(!window.confirm('Você realmente quer Excluir usuário: #{pessoa.nome} ?') ) return false;">
-					     <i class="fa fa-trash"></i>
-					     
-					</p:commandLink>
+					<p:commandButton  actionListener="#{pessoaBean.excluir(pessoa.id)}"  
+					                  title="Excluir Usuário"  
+					                  update="@form" 
+					                  icon="fa fa-trash"  
+					                  onclick="if(!window.confirm('Você realmente quer Excluir usuário: #{pessoa.nome} ?') ) return false;"   />
 				</p:column>
 			</p:dataTable>
 

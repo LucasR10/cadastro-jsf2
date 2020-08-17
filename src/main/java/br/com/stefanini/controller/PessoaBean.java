@@ -1,7 +1,6 @@
 package br.com.stefanini.controller;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -33,20 +32,20 @@ public class PessoaBean implements Serializable {
 	}
 
 	public void salvar() {
-		pessoa.setDataCadastro( Calendar.getInstance() );
 		pessoa.setSexo( generoSelecionado );
 		pessoa.setNaturalidade( estadoSelecionado.getSigla() );
 		pessoaService.salvar(this.pessoa);
+		this.pessoa = new Pessoa();
 	}
 
-	public String atualizar(Pessoa pessoa) {
-		this.pessoa = pessoa;
-		return "/view/cadastroPessoa.xhtml";
+	public void excluir(Long id) {
+		pessoaService.excluir( new Pessoa(id) );
 	}
 	
-	public void excluir(Pessoa p) {
-		pessoaService.excluir(pessoa);
+	public void  editar(Pessoa p) {
+		this.pessoa = p;
 	}
+	
 	public void limpar() {
 		pessoa = new Pessoa();
 	}

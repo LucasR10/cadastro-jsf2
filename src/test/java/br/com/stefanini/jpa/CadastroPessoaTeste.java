@@ -2,7 +2,8 @@ package br.com.stefanini.jpa;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.com.stefanini.costante.Genero;
 import br.com.stefanini.filter.JPAFilter;
 import br.com.stefanini.model.Pessoa;
 
@@ -21,7 +23,7 @@ public class CadastroPessoaTeste {
 	
 	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(JPAFilter.CADASTRO_PU);
 	private EntityManager entityManager;
-	private List<Pessoa> inicarPessoasCadastradas = new ArrayList<>();
+	Pessoa pessoa =  new Pessoa(null,"Lucas", Genero.F, "email", new Date(), Calendar.getInstance(), Calendar.getInstance(), "naturalidade", "nacionalidade", "cpf");
 	
 	@BeforeClass
 	public void initEntityManager() throws Exception {
@@ -43,7 +45,7 @@ public class CadastroPessoaTeste {
 	@Test
 	public void salvar() throws Exception {
 	    try {
-	    	Pessoa p =inicarPessoasCadastradas.get(0);
+	    	Pessoa p =pessoa;
 	    	entityManager.persist( entityManager.merge(p) );
 	    	p = entityManager.find( Pessoa.class, 1L);
 	    	System.out.println( p );
@@ -101,7 +103,7 @@ public class CadastroPessoaTeste {
 	
 	@Test
 	public void validarDoisCadastrosComMesmoCPF()throws Exception {
-		Pessoa p = inicarPessoasCadastradas.get(0);
+		Pessoa p = pessoa;
     	Pessoa pessoaCpf = entityManager.createNamedQuery(Pessoa.BUSCAR_POR_CPF, Pessoa.class).setParameter(1, p.getCpf() ).getSingleResult(); 
 		System.out.println( pessoaCpf );
 		assertTrue( p.getCpf().equals(pessoaCpf.getCpf()) );

@@ -53,3 +53,17 @@
 	font-size: 1.5em;
 	color: #373737;
 }
+
+
+.aw-msg-magin{
+	margin-top: 60px;
+	width: 634px !important
+}
+
+.aw-painel{
+    width: 627px !important;	
+}
+
+.aw-bold{
+      font-weight: bold;
+    }

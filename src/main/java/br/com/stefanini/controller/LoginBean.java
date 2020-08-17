@@ -1,6 +1,7 @@
 package br.com.stefanini.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -18,10 +19,16 @@ import br.com.stefanini.repository.UsuarioRepository;
 public class LoginBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	private static final String ADMIN = "admin";
+	private static final String ADMIN_PASS = "122334444";
+	
+	private static final String NEYMARJR = "neymarjr";
+	private static final String NY_PASS = "12345";
+	
 	private Usuario usuarioLogado;
     private String login;
     private String senha;
-   
+    List<Usuario> usuarios ;
     
     private UsuarioRepository usuarioRepository = new UsuarioRepository() ;
 
@@ -32,9 +39,12 @@ public class LoginBean implements Serializable {
     public void init() {
         this.login = "";
         this.senha = "";
-        usuarioRepository.salvar(new Usuario("Neymar JR", "neymarjr", "12345", Boolean.FALSE));
-        usuarioRepository.salvar(new Usuario("Paula Silva", "admin", "12345", Boolean.TRUE) );
        
+        if( false ) {
+	      usuarioRepository.salvar(new Usuario("Neymar JR", NEYMARJR, NY_PASS, Boolean.FALSE));
+	      usuarioRepository.salvar(new Usuario("Paula Silva", ADMIN, ADMIN_PASS, Boolean.TRUE) );
+        }
+           if(usuarioLogado != null) usuarios  = usuarioRepository.listar();
     }
 
     public String logIn() {
@@ -78,5 +88,9 @@ public class LoginBean implements Serializable {
 		return usuarioLogado;
 	}
     
+   
+    public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
 
 }

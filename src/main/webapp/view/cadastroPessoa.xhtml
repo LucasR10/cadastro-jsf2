@@ -6,41 +6,47 @@
 	template="/WEB-INF/templates/layout.xhtml">
 
 	<ui:define name="content">
-		<h:form id="formulario">
+		<h:form id="formulario" prependId="false">
 		<div class="row"></div>
-			<p:messages closable="true" />
-			<p:panel header="Cadastro de Pessoas">
+		 <div class="row">
+		   <p:messages closable="true" id="msg-global" styleClass="aw-msg-magin" />
+		 </div>
+		
+			<p:panel header="Cadastro de Pessoas" styleClass="aw-painel" style="font-size: 15px;">
+			<h:inputHidden value="#{pessoaBean.pessoa.id}"/>
 				<h:panelGrid columns="2" cellpadding="5">
 					
-					<p:outputLabel value="Nome:" for="nome" />
+					<p:outputLabel value="Nome:" for="nome" styleClass="aw-bold" />
 					<h:panelGroup>
-						<p:inputText id="nome" value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Favor informar seu nome completo."  >
-						     <f:validateLength  minimum="5"  />
-						</p:inputText>
+						<p:inputText id="nome" value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Favor informar seu nome completo." maxlength="100"  placeholder="Jose da Silva" />
 					</h:panelGroup>
 					
-				    <p:outputLabel value="Data de Nascimento :" for="dataNascimento"  />
+				    <p:outputLabel value="Data de Nascimento :" for="dataNascimento" styleClass="aw-bold"  />
 					<h:panelGroup>
-					     <p:calendar id="dataNascimento" value="#{pessoaBean.pessoa.dataNascimento}" 
-					      pattern="dd/MM/yyyy" mask="true" 
-					       required="true" requiredMessage="Favor informar a Data de Nascimento."  />
+					     <p:calendar id="dataNascimento" 
+					                 value="#{pessoaBean.pessoa.dataNascimento}"  
+					                 pattern="dd/MM/yyyy" 
+					                 mask="true"  
+					                 required="true" 
+					                 requiredMessage="Favor informar a Data de Nascimento."  placeholder="10/11/1985" 
+					                  />
 					</h:panelGroup>
 					
-					 <p:outputLabel value="CPF:" for="cpf" />
+					 <p:outputLabel value="CPF:" for="cpf" styleClass="aw-bold" />
 					<h:panelGroup>
-						<p:inputMask id="cpf" value="#{pessoaBean.pessoa.cpf}" mask="999.999.999-99"  required="true" requiredMessage="Favor informar o CPF." >
+						<p:inputMask id="cpf" value="#{pessoaBean.pessoa.cpf}" mask="999.999.999-99"  required="true" requiredMessage="Favor informar o CPF."  maxlength="12" placeholder="054.533.048-08">
 						    <f:validator validatorId="cpfValidator" />
 						</p:inputMask>
 					</h:panelGroup>
 					
-					<p:outputLabel value="E-mail:" for="email" />
+					<p:outputLabel value="E-mail:" for="email" styleClass="aw-bold" />
 					<h:panelGroup>
-						<p:inputText id="email" value="#{pessoaBean.pessoa.email}" >
+						<p:inputText id="email" value="#{pessoaBean.pessoa.email}"  maxlength="50" placeholder="josesilva@gmail.com">
 						<f:validator validatorId="emailValidator"/>
 						</p:inputText>
 					</h:panelGroup>
 					
-					<p:outputLabel value="Sexo" for="sexo" />
+					<p:outputLabel value="Sexo" for="sexo" styleClass="aw-bold" />
 					<h:panelGroup styleClass="col-mod-4">
 						<p:selectOneMenu id="sexo" value="#{pessoaBean.generoSelecionado}">
 							<f:selectItem itemLabel="Selecione..." />
@@ -48,7 +54,7 @@
 						</p:selectOneMenu>
 					</h:panelGroup>
 					
-					<p:outputLabel value="Naturalidade " for="naturalidade" />
+					<p:outputLabel value="Naturalidade " for="naturalidade" styleClass="aw-bold" />
 					<h:panelGroup styleClass="col-mod-4">
 						<p:selectOneMenu id="naturalidade" value="#{pessoaBean.estadoSelecionado.sigla}"  >
 							<f:selectItem itemLabel="Selecione..." />
@@ -56,15 +62,28 @@
 						</p:selectOneMenu>
 					</h:panelGroup>
 					
-					<p:outputLabel value="Nacionalidade :" for="nacionalidade" />
+					<p:outputLabel value="Nacionalidade :" for="nacionalidade" styleClass="aw-bold" />
 					<h:panelGroup>
-						<p:inputText id="nacionalidade" value="#{pessoaBean.pessoa.nacionalidade}" />
+						<p:inputText id="nacionalidade" value="#{pessoaBean.pessoa.nacionalidade}" placeholder="Brasil, US, Bolivia" />
 					</h:panelGroup>
 					
 				</h:panelGrid>
-
-				<p:commandButton value="Cadastra" action="#{pessoaBean.salvar()}" update="@form" ajax="false" />
-				<p:commandButton value="Limpar" action="#{pessoaBean.limpar() }" update="@form" />
+                <h:panelGrid columns="2" cellpadding="5" style="margin-top:10px;">
+				     <p:commandButton  
+				                   value="Cadastrar" 
+				                   action="#{pessoaBean.salvar()}"  
+				                   icon="fa fa-save"  
+				                   update="@form" ajax="false" 
+				                   styleClass="btn btn-primary aw-bold" 
+				                   style="margin-right: 19px;" />
+				                   
+				     <p:commandButton  value="Novo"    
+				                       action="#{pessoaBean.limpar()}"  
+				                       icon="fa fa-plus" 
+				                       update="@form" 
+				                       styleClass="btn btn-danger aw-bold" 
+				                       immediate="true" />
+			 </h:panelGrid>
 			</p:panel>
 
 		</h:form>
