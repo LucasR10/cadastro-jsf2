@@ -1,5 +1,6 @@
 package br.com.stefanini.repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,8 +11,8 @@ import br.com.stefanini.util.JPAUtil;
 
 
 
-public class UsuarioRepository { 
-
+public class UsuarioRepository implements Serializable{ 
+	private static final long serialVersionUID = 1L;
 	private static EntityManager em = JPAUtil.getEntityManager();
 	private static EntityTransaction transaction = em.getTransaction();
 
@@ -39,6 +40,16 @@ public class UsuarioRepository {
 			}
 			
 	}
+	
+	public Object existUsuarioCriado() {
+		try {
+			return em.createNativeQuery("SELECT count(id) FROM TB_USUARIO ").getSingleResult();
+		} catch (Exception e) {
+			System.out.println(" Login não Localizado! ");
+			return null;
+		}
+		
+}
 	
 	public List<Usuario> listar() {
 		try {

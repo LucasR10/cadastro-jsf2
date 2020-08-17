@@ -45,10 +45,18 @@
 			  </h:outputLink>
 			</li>
 			<li>
-				 <h:outputLink value="#{contex}/listarPessoa.xhtml">
+			<h:outputLink value="#{contex}/listarPessoa.xhtml">
 				    <i class="fa  fa-fw  fa-file-text"></i>Listar
 				  </h:outputLink>
-				</li>
+			</li>
+			
+			<li>
+			   <h:form>
+			   <h:commandLink action="#{loginBean.logOff()}">
+				    <i class="fa  fa-fw  fa-file-text"></i>Sair
+			   </h:commandLink>
+			   </h:form>
+			</li>
 		    </ul>
 	</nav>
 	</aside>

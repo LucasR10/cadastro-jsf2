@@ -1,5 +1,6 @@
 package br.com.stefanini.repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,9 +9,9 @@ import javax.persistence.EntityTransaction;
 import br.com.stefanini.model.Pessoa;
 import br.com.stefanini.util.JPAUtil;
 
-public class PessoaRepository implements JPARepository<Pessoa,Long> {
+public class PessoaRepository implements JPARepository<Pessoa,Long> , Serializable{
 
-
+	private static final long serialVersionUID = 1L;
 	private static EntityManager em = JPAUtil.getEntityManager();
 	private static EntityTransaction transaction = em.getTransaction();
 

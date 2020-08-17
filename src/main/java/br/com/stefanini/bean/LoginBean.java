@@ -1,6 +1,7 @@
 package br.com.stefanini.bean;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,7 @@ public class LoginBean implements Serializable {
     private String login;
     private String senha;
     List<Usuario> usuarios = new ArrayList<Usuario>() ;
-    private Boolean criado =false;
-    ;
+
     private UsuarioRepository usuarioRepository = new UsuarioRepository() ;
 
     public LoginBean() {
@@ -42,10 +42,12 @@ public class LoginBean implements Serializable {
         this.login = "";
         this.senha = "";
        
-        if( !criado ) {
+        BigInteger quantidade = (BigInteger) usuarioRepository.existUsuarioCriado();
+        
+        
+        if(quantidade.longValue() == 0  ) {
         	 usuarioRepository.salvar( usuariosMock().get(0) );
         	 usuarioRepository.salvar( usuariosMock().get(1) );
-        	 criado = true;
         } 
         if( usuarioLogado != null ) {
             usuarios  = usuarioRepository.listar();
