@@ -3,15 +3,17 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	template="/WEB-INF/templates/layout.xhtml">
+	template="/WEB-INF/templates/layout.xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 	
 	<ui:define name="content">
-		<h1 class="aw-page-title">Usuários</h1>
+		<h1 class="aw-page-title">Cadastro de Pessoas</h1>
 	<h:form id="formulario">
              <p:messages closable="true" />
-			<p:panel header="Cadastro de Pessoas" styleClass="aw-painel" id="painelPessoa" rendered="#{pessoaBean.pessoa.id != null}"
-				style="font-size: 15px;">
+			<p:panel header="Cadastro de Pessoas" styleClass="aw-painel" id="painelPessoa" rendered="#{pessoaBean.pessoa.id != null}" style="font-size: 15px;">
 				<h:inputHidden value="#{pessoaBean.pessoa.id}" />
+				<c:set var="admin" value="#{loginBean.usuarioLogado.admin}"/> 
+				
 				<h:panelGrid columns="2" cellpadding="5">
 
 					<p:outputLabel value="Nome:" for="nome" styleClass="aw-bold" />
@@ -129,13 +131,16 @@
 					                  ajax="true" 
 					                  icon="fa fa-edit"  
 					                  immediate="true"
+					                  disabled="#{!admin}"
 					                   />
 					
 					<p:commandButton  actionListener="#{pessoaBean.excluir(pessoa.id)}"  
 					                  title="Excluir Usuário"  
 					                  update="@form" 
 					                  icon="fa fa-trash"  
-					                  onclick="if(!window.confirm('Você realmente quer Excluir usuário: #{pessoa.nome} ?') ) return false;"   />
+					                  onclick="if(!window.confirm('Você realmente quer Excluir usuário: #{pessoa.nome} ?') ) return false;"  
+					                  disabled="#{!admin}"
+					                  />
 				</p:column>
 			</p:dataTable>
 
