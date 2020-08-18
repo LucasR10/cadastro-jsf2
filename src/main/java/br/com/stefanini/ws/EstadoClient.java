@@ -12,6 +12,11 @@ import com.sun.jersey.api.client.WebResource;
 
 import br.com.stefanini.dto.EstadoDTO;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
+
 public class EstadoClient {
 	
 	private static final String BUSCAR_ESTADOS = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";

@@ -9,6 +9,11 @@ import javax.faces.validator.ValidatorException;
 
 import br.com.stefanini.util.AppUtil;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
+
 @FacesValidator("cpfValidator")
 public class CpfValidator implements Validator {
 

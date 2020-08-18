@@ -9,6 +9,10 @@ import javax.persistence.EntityTransaction;
 import br.com.stefanini.model.Pessoa;
 import br.com.stefanini.util.JPAUtil;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
 public class PessoaRepository implements JPARepository<Pessoa,Long> , Serializable{
 
 	private static final long serialVersionUID = 1L;

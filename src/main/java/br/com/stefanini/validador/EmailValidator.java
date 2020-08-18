@@ -10,6 +10,10 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
 @FacesValidator("emailValidator")
 public class EmailValidator implements Validator {
 

@@ -6,6 +6,10 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
 public class FacesUtil {
 
 	public static String getMensagemI18n(String chave) {

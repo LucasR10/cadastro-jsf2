@@ -11,6 +11,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
 
 @NamedQueries({ 
 	@NamedQuery(name = Usuario.LOGIN, query = "SELECT u FROM Usuario u WHERE u.login= ?1 AND u.senha = ?2"),

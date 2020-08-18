@@ -7,6 +7,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
+
 ///Fonte:https://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
 public class AppUtil {
 

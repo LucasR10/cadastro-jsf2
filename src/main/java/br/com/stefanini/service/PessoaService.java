@@ -8,6 +8,10 @@ import br.com.stefanini.repository.PessoaRepository;
 import br.com.stefanini.util.AppUtil;
 import br.com.stefanini.util.FacesUtil;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
 public class PessoaService {
 
 	protected PessoaRepository repository = new PessoaRepository();

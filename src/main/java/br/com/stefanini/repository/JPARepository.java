@@ -2,6 +2,10 @@ package br.com.stefanini.repository;
 
 import java.util.List;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
 public interface JPARepository<T, K> {
 
 	

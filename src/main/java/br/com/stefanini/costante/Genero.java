@@ -1,5 +1,10 @@
 package br.com.stefanini.costante;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
+
 public enum Genero {
 	
 	M("Masculino",'M'), F("Feminino",'F'), Outos("Outros",'O') ;

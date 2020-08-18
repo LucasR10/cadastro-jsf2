@@ -17,6 +17,10 @@ import br.com.stefanini.phaseListener.LoginPhaseListener;
 import br.com.stefanini.repository.UsuarioRepository;
 import br.com.stefanini.util.AppUtil;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
 
 @ManagedBean 
 @SessionScoped

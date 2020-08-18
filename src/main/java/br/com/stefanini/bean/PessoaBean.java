@@ -12,6 +12,11 @@ import br.com.stefanini.model.Pessoa;
 import br.com.stefanini.service.PessoaService;
 import br.com.stefanini.ws.EstadoClient;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
+
 @ManagedBean
 @ViewScoped
 public class PessoaBean implements Serializable {

@@ -10,7 +10,10 @@ import br.com.stefanini.model.Usuario;
 import br.com.stefanini.util.JPAUtil;
 
 
-
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
 public class UsuarioRepository implements Serializable{ 
 	private static final long serialVersionUID = 1L;
 	private static EntityManager em = JPAUtil.getEntityManager();

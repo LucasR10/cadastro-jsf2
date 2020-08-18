@@ -2,6 +2,11 @@ package br.com.stefanini.dto;
 
 import java.io.Serializable;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
+
 public class EstadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

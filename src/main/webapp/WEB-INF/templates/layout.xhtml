@@ -13,7 +13,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 	</f:facet>
 
-	<title>Stefanini - Cadastro de Pessoas</title>
+	<title>Stefanini - #{msg.titulo}</title>
 
 	<h:outputStylesheet library="app" name="styles/custom.css" />
 	<h:outputStylesheet library="app" name="styles/layout.css" />
@@ -28,7 +28,7 @@
 	
 	<header class="aw-topbar">
 	    <a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
-	    <div  class="nomeUser">Seja Bem-vindo -  #{loginBean.usuarioLogado.nome}!</div>
+	    <div  class="nomeUser">#{msg.bemvindo} -  #{loginBean.usuarioLogado.nome}!</div>
 	</header>
 	
 	<aside class="aw-sidebar  js-sidebar">
@@ -36,28 +36,28 @@
 		<ul>
 			<li>
 				<h:outputLink value="#{facesContext.externalContext.applicationContextPath}">
-					<i class="fa  fa-fw  fa-home"></i>Ínicio
+					<i class="fa  fa-fw  fa-home"></i>#{msg.inicio}
 				</h:outputLink>
 			</li>
 			<li class="is-selected"> 
 			 <h:outputLink value="#{contex}/cadastroPessoa.xhtml">
-			   <i class="fa  fa-fw  fa-plus"></i>Cadastro
+			   <i class="fa  fa-fw  fa-plus"></i>#{msg.cadastro}
 			  </h:outputLink>
 			</li>
 			<li>
 			<h:outputLink value="#{contex}/listarPessoa.xhtml">
-				    <i class="fa  fa-fw  fa-list"></i>Listar
+				    <i class="fa  fa-fw  fa-list"></i>#{msg.listar}
 				  </h:outputLink>
 			</li>
 			<li>
 			<h:outputLink value="#{contex}/listarUsuario.xhtml">
-				    <i class="fa  fa-fw  fa-file-text"></i>Login
+				    <i class="fa  fa-fw  fa-file-text"></i>#{msg.login}
 				  </h:outputLink>
 			</li>
 			<li>
 			   <h:form>
 			   <h:commandLink action="#{loginBean.logOff()}">
-				    <i class="fa  fa-sign-out"></i>Sair
+				    <i class="fa  fa-sign-out"></i>#{msg.sair}
 			   </h:commandLink>
 			   </h:form>
 			</li>

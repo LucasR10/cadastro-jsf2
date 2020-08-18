@@ -9,6 +9,10 @@ import javax.servlet.http.HttpSession;
 
 import br.com.stefanini.model.Usuario;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
 public class LoginPhaseListener implements PhaseListener {
 
 

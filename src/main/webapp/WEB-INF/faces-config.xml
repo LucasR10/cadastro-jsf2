@@ -14,6 +14,11 @@
 		<phase-listener>br.com.stefanini.phaseListener.LoginPhaseListener</phase-listener>
 	</lifecycle>
  
-
+     <application>
+	  <resource-bundle>
+		<base-name>messages</base-name>
+		<var>msg</var>
+	   </resource-bundle>
+     </application>
 
 </faces-config>

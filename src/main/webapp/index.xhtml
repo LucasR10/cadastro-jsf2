@@ -6,7 +6,7 @@
 	template="/WEB-INF/templates/layout.xhtml">
 	
 	<ui:define name="content">
-		<h1 class="aw-page-title">Seja Bem-vindo</h1>
+		<h1 class="aw-page-title">#{msg.bemvindo}</h1>
 		
 		<h:form id="frm">
 			<h3> Olá #{loginBean.usuarioLogado.nome} você possui acesso como <b>#{loginBean.usuarioLogado.admin ? 'Admin':'Usuário '} </b> </h3>

@@ -4,6 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
 public class JPAUtil {
 
 	public static final String CADASTRO_PU = "cadastroPU";

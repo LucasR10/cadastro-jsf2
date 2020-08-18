@@ -21,6 +21,11 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.stefanini.costante.Genero;
 
+/**
+ * @author Lucas Carvalho
+ * @since 17/15/2020
+ * */
+
 @NamedQueries({ @NamedQuery(name = Pessoa.LISTAR_TODOS, query = "SELECT p FROM Pessoa p"), @NamedQuery(name = Pessoa.BUSCAR_POR_CPF, query = "SELECT p FROM Pessoa p WHERE p.cpf = ?1") })
 @Entity
 @Table(name = "TB_PESSOA")
