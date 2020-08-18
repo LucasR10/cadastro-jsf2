@@ -36,6 +36,7 @@
 * **Java 8**
 * **JSF 2.2**
 * **Primefaces 7**
+* **jersey** (Client para acessar a API de estados IBGE: https://servicodados.ibge.gov.br/api/v1/localidades/estados)
 * **JPA/Hibernate**
 * **HTML5 / BootStrap 3.x**
 * **CSS**
