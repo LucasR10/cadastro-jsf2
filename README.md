@@ -52,3 +52,5 @@
  * Eclipse 2020/06 para desenvolvimento Web
  * Baixa  [Tomcat 9](https://tomcat.apache.org/download-90.cgi)
  * Importar o projeto mavem e executar os seguintes comandos: mvn clean install
+ 
+ # Adicionado a Integração com Jenkis
